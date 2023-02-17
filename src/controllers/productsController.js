@@ -46,7 +46,7 @@ const controller = {
 			price: +price,
 			discount: +discount,
 			category,
-			image: null
+			image: req.file ? req.file.filename : 'default-image.png'
 		}
 		products.push(newProduct)
 		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 3), 'utf-8');
@@ -79,7 +79,7 @@ const controller = {
 			price: +price,
 			discount: +discount,
 			category,
-			image: product.image
+			image: req.file ? req.file.filename : product.image
 		}
 
 		const productsModificated = products.map(product => {
